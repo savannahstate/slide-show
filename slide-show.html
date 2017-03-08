@@ -1,0 +1,860 @@
+
+
+<style>
+    .slide-show-container{
+        border-style: solid;
+        border-radius: 15px;
+        border-color: grey;
+        width: 810px;
+        height: 490px;
+        box-shadow: 0 0 10px grey, inset 0 0 15px grey;
+        font-family: "Lucida Sans Unicode";
+        background-color: #e6e6e6;
+        overflow: hidden;
+    }
+    .slide-show-container h2{
+        font-family: "Lucida Sans Unicode";
+        font-variant: small-caps;
+        font-size: 35px;
+    }
+    .slideshow-list{
+        margin: 0;
+        padding: 0;
+        user-select: none;
+    }
+    .slide-title{
+        border-bottom-style: solid;
+        border-width: 1px;
+        width: 630px;
+        margin-bottom: 0;
+    }
+
+    /*slide change buttons*/
+    .arrows{
+        margin-bottom: 1px;
+        margin-right: 2px;
+        display: inline-block;
+        margin-left: 710px;
+        cursor: pointer;
+    }
+    .left-arrow-containerLast{
+        float: right;
+        width: 40px;
+    }
+    .right-arrow-container{
+        float: right;
+        width: 40px;
+        border: solid thin #b3ffb3;
+        padding-left: 8px;
+        border-radius: 8px;
+        margin-left: 1px;
+        background-color: white;
+    }
+    .right-arrow-container:active{
+        color: #E87419;
+        box-shadow: 0 0 10px grey, inset 0 0 15px grey; 
+    }
+    .right-arrow{
+        border-top: 10px solid transparent;
+        border-bottom: 10px solid transparent; 
+        border-left: 25px solid #E87419;
+        margin-left: 2px;
+    }
+    .left-arrow-container1st{
+        float: left;
+        width: 40px;
+    }
+    .left-arrow-container{
+        float: left;
+        width: 40px;
+        border: solid thin #b3ffb3;
+        padding-right: 8px;
+        border-radius: 8px;
+        background-color: white;
+    }
+    .left-arrow-container:active{
+        color: #E87419;
+        box-shadow: 0 0 10px grey, inset 0 0 15px grey; 
+    }
+    .left-arrow{
+        border-top: 10px solid transparent;
+        border-bottom: 10px solid transparent; 
+        border-right: 25px solid #E87419;
+    }
+
+    /*slide navigation tracker*/
+    .slide-page-tracker{
+        border-style: solid;
+        border-width: 1px 0 0 0;
+        background-color: #337ab7;
+        border-radius: 0 0 15px 15px;
+        height: 52px;
+        padding: 11px;
+    }
+    .slide-page-tracker h3{
+        color: black;
+        margin: 0;
+        display: inline-block;
+    }
+    .numbers-container{
+        width: 728px;
+        display: flex;
+        justify-content: space-between;
+        float: right;
+    }
+    .tracker-numbers{
+        display: inline-block;
+        color: white;
+    }
+    .tracker-numbers:hover{
+        color: #99badd;
+        cursor: pointer;
+    }
+    .highlight{
+        color: #E87419;
+    }
+
+    /*standard page styling*/
+    .standard-slide-header{
+        padding-bottom: 0;
+        margin-bottom: 0;
+        text-align: right;
+    }
+
+    .standard-slide-container{
+        height: 359px;
+        width: auto;
+        padding: 30px 20px 10px 20px;
+        font-family: serif, Georgia, 'Times New Roman', Times;
+        font-size: 20px;
+    }
+    .standard-slide-container h4{
+        font-family: serif, Georgia, 'Times New Roman', Times;
+        font-weight: bold;
+    }
+    .slide-lists{
+        list-style-type: square;
+        margin-bottom: 10px;
+        margin-top: 10px;
+    }
+    .small19{
+        font-size: 19px;
+    }
+    .small18{
+        font-size: 18px;
+    }
+    .small17{
+        font-size: 17px;
+    }
+    .small16{
+        font-size: 16px;
+    }
+    .note{
+        font-size: 14px;
+    }
+    
+    /*title slide styling*/
+    #title-slide-header-top{
+        padding-bottom: 0;
+        margin-bottom: 0;
+        margin-left: 150px;
+    }
+
+    #title-slide-header-sub{
+        padding-top: 0;
+        margin-top: 0;
+        margin-left: 350px;
+    }
+    
+    #title-left{
+        border-style: solid;
+        border-width: 1px 0 0 1px;
+        margin-left: 25px;
+        height: 300px;
+        float: left;
+    }
+    #title-left img{
+        width: 300px;
+        height: 300px;
+    }
+    #title-right{
+        margin-left: 355px;
+        border-style: solid;
+        border-width: 1px 0 0 0;
+        width: 435px;
+    }
+    #title-right h3{
+        font-size: 15px;
+        letter-spacing: 4px;
+        font-weight: bold;
+        line-height: 25px;
+        margin-bottom: 70px;
+    } 
+</style>
+<!--If a slide is added or removed, the "clickable slide navigation" javascript must be updated as well -->
+<!-- slide show -->
+<section class="slide-show-container">
+    <ul class="slideshow-list">
+        <!-- slide 1 -->
+        <li class="slide1 hide show">
+            <div class="slide-title">
+                <h2 id="title-slide-header-top">Welcome to the ssu</h2>
+            </div>
+            <h2 id="title-slide-header-sub">Online orientation</h2>
+            <div class="slide-content">
+                <div id="title-left">
+                    <img id="title-pic" src="../../places/images/hill-hall.jpg" alt="Hill Hall - Savannah State"/>
+                </div>
+                <div id="title-right">
+                        <h3>Savannah State University,<br>
+                        founded in 1890, is the oldest<br>
+                        public historically black<br>
+                        college in Georgia</h3>
+                        <p>The arrow to the lower right will take<br>
+                        you to the next page in the orientation<br>
+                        program. The numbers at the bottom will<br>
+                        allow you to click forward or backward<br>
+                        in the orientation process.</p>
+                </div>
+                <div class="arrows">
+                    <div class="left-arrow-container1st">
+                    </div>
+                    <div class="right-arrow-container">
+                        <div class="right-arrow"></div>
+                    </div>
+                </div>
+            </div>
+        </li>
+        <!-- slide 2 -->
+        <li class="slide2 hide">
+            <div class="slide-title">
+                <h2 class="standard-slide-header">Online Orientation Instructions</h2>
+            </div>
+            <div class='standard-slide-container'>
+                <p>All form links will open in a new tab adjacent to the current one.  To return to the orientation, just click on the tab.</p>
+                <p>Links to policy statements and employment forms will appear as unique links to specific information.</p>
+                <p>Most forms will be viewable in the browser window, but some require download.  In these cases, you will need a pdf reader.  If you do not have one on your computer, you can download Adobe Reader by <a href="https://get.adobe.com/reader/" target="_blank">clicking here.</a>
+            </div>
+            <div class="arrows">
+                <div class="left-arrow-container">
+                    <div class="left-arrow"></div>
+                </div>
+                <div class="right-arrow-container">
+                        <div class="right-arrow"></div>
+                </div>
+            </div>
+        </li>
+        <!-- slide 3 -->
+        <li class="slide3 hide">
+            <div class="slide-title">
+                <h2 class="standard-slide-header">New Employee Checklist</h2>
+            </div>
+            <div class='standard-slide-container'>
+                <p><a href="docs/New Employee Checklist.doc" download>Click here to print and read this form</a><p>
+                <p>Please use this checklist to guide you through your first few days of employment at SSU.</p>
+                <p><strong>Note:</strong>This orientation is for full-time employees who are benefit eligible.</p>
+                <p><strong>Also, be aware of benefits enrollment deadlines.</strong></p>
+            </div>
+            <div class="arrows">
+                <div class="left-arrow-container">
+                    <div class="left-arrow"></div>
+                </div>
+                <div class="right-arrow-container">
+                        <div class="right-arrow"></div>
+                </div>
+            </div>
+        </li>
+        <!-- slide 4 -->
+        <li class="slide4 hide">
+            <div class="slide-title">
+                <h2 class="standard-slide-header">Employment Forms</h2>
+            </div>
+            <div class='standard-slide-container'>
+                <p>During this program, you will be guided through forms essential to beginning your employment at Savannah State University.  You will receive an explanation of and brief instructions to complete the forms.  Some forms are necessary to receive your paycheck.</p>
+                <p>If you have any questions about the forms, please contact your supervisor or <strong>Human Resources at (912) 358-4194</strong></p>
+            </div>
+            <div class="arrows">
+                <div class="left-arrow-container">
+                    <div class="left-arrow"></div>
+                </div>
+                <div class="right-arrow-container">
+                        <div class="right-arrow"></div>
+                </div>
+            </div>
+        </li>
+        <!-- slide 5 -->
+        <li class="slide5 hide">
+            <div class="slide-title">
+                <h2 class="standard-slide-header">Objectives</h2>
+            </div>
+            <div class='standard-slide-container'>
+                <h4>What will this orientation accomplish?</h4>
+                <ul>
+                    <li class="slide-lists">You will complete basic Right to Know training as required</li>
+                    <li class="slide-lists">You will receive information about important policies that govern your employment</li>
+                    <li class="slide-lists">You will obtain necessary employment forms</li>
+                </ul>
+            </div>
+            <div class="arrows">
+                <div class="left-arrow-container">
+                    <div class="left-arrow"></div>
+                </div>
+                <div class="right-arrow-container">
+                        <div class="right-arrow"></div>
+                </div>
+            </div>
+        </li>
+        <!-- slide 6 -->
+        <li class="slide6 hide">
+            <div class="slide-title">
+                <h2 class="standard-slide-header">SSU Right to Know Training</h2>
+            </div>
+            <div class='standard-slide-container'>
+                <p>The University System of Georgia has developed a plan to assure that all employees receive training and information about hazardous chemicals present in their work areas.</p>
+                <p>Click <a href="http://www.usg.edu/facilities/rtk-ghs/" target="_blank">HERE</a> or below for the University System of Georgia "Right to Know Training."  At the end of the training, please complete the online form and print the certificate of completion.  Note:  If you are off campus, you may not be able to print the online certificate.  If this is the case, please print out the page at the end of the training that states: "Congratulations!  You have completed the Right to Know Online Training Program."</p>
+                <p>Either that page or the certificate <strong>MUST</strong> be brought to your Human Resources session to verify your "Right to Know Training."  After printing the certificate, close the window to return to this page, &amp; click on the orange arrow to continue your orientation</p>
+                <a href="http://www.usg.edu/facilities/rtk-ghs/" target="_blank">Click Here for Right to Know Training</a>
+            </div>
+            <div class="arrows">
+                <div class="left-arrow-container">
+                    <div class="left-arrow"></div>
+                </div>
+                <div class="right-arrow-container">
+                        <div class="right-arrow"></div>
+                </div>
+            </div>
+        </li>
+        <!-- slide 7 -->
+        <li class="slide7 hide">
+            <div class="slide-title">
+                <h2 class="standard-slide-header">Employment Policies</h2>
+            </div>
+            <div class='standard-slide-container'>
+                <p>It is your responsibility, as employees of the University, to become familiar with the policies that govern our conducts</p>
+                <p>Please <strong>READ</strong> and <strong>PRINT</strong> each of the following policy statements.  You will then print a form to sign, stating that you have received or read copies of the policies.  This form must be brought with your other paperwork to the Human Resources session.</p>
+                <p>If you have questions about any of these policies, refer to the contacts in the policies, ask your supervisor, or contact Human Resources.</p>
+                <p>Learn about important policies governing your employment.</p>
+            </div>
+            <div class="arrows">
+                <div class="left-arrow-container">
+                    <div class="left-arrow"></div>
+                </div>
+                <div class="right-arrow-container">
+                        <div class="right-arrow"></div>
+                </div>
+            </div>
+        </li>
+        <!-- slide 8 -->
+        <li class="slide8 hide">
+            <div class="slide-title">
+                <h2 class="standard-slide-header">Drug and Alcohol Policy</h2>
+            </div>
+            <div class='standard-slide-container small18'>
+                <p>In compliance with the Drug-Free Schools and Communities Act Amendments of 1989, SSU has had in place, since the fall quarter of 1990, a formal policy for the faculty, staff, and students detailing standards of conduct and applicable sanctions related to the unlawful possession, use, or distribution of illicit drugs and/or alcohol by employees and students.  In accordance with federal legislation, the university hereby notifies the faculty and staff that the unlawful possession, manufacture, distribution, dispensation and use of drugs and/or alcohol is prohibited and will not be tolerated on the campus os SSU.  Members of the faculty and staff who unlawfully possess, use, or distribute drugs and/or alcohol on university premises or at any university sponsored activity will be subject to strong disciplinary action consistent with local, state, and federal law up to and including expulsion and referral to prosection.  The institution may also impose other sanctions on students consistent with appropriate regualations as dictated in The Policy Manual of the Board of Regents and other related policies and procedures.  For complete information and sanctions, please refer to the entire policy.</p>
+                <p>Please <strong>PRINT</strong> and <strong>READ</strong> the following policy statement</p>
+                <a href="http://www.savannahstate.edu/faculty-staff/human-resources/docs/drugpolicy.pdf" target="_blank">Drug-Free Schools and Communities Act Amendments of 1989</a>
+            </div>
+            <div class="arrows">
+                <div class="left-arrow-container">
+                    <div class="left-arrow"></div>
+                </div>
+                <div class="right-arrow-container">
+                        <div class="right-arrow"></div>
+                </div>
+            </div>
+        </li>
+        <!-- slide 9 -->
+        <li class="slide9 hide">
+            <div class="slide-title">
+                <h2 class="standard-slide-header">Family Medical Leave Act</h2>
+            </div>
+            <div class='standard-slide-container'>
+                <p>Please <strong>PRINT</strong> and <strong>READ</strong> the following policy statement</p>
+                <a href="http://www.savannahstate.edu/faculty-staff/human-resources/docs/FMLA.pdf" target="_blank">Family Medical Leave Act</a>
+            </div>
+            <div class="arrows">
+                <div class="left-arrow-container">
+                    <div class="left-arrow"></div>
+                </div>
+                <div class="right-arrow-container">
+                        <div class="right-arrow"></div>
+                </div>
+            </div>
+        </li>
+        <!-- slide 10 -->
+        <li class="slide10 hide">
+            <div class="slide-title">
+                <h2 class="standard-slide-header">SSU Sexual Harassment Policy</h2>
+            </div>
+            <div class='standard-slide-container'>
+                <h4>Sexual harassment is no laughing matter.</h4>
+                <p><strong>Wonder if a behavior is inappropriate or unwelcome</strong></p>
+                <p><strong>Just don't do it!</strong></p>
+                <p>SSU is committed to maintaining a fair and respectful environment for living, working, and studying.  Reports of sexual harassment will be met with appropriate disciplinary action, up to and including dismissal from the University.  SSU's Judicial Affairs Officer is the Harassment Prevention Officer.  The University encourages any person who feels he or she has been harassed to report the incident.</p>
+                <p>Please <strong>PRINT</strong> and <strong>READ</strong> the following policy statement</p>
+                <a href="http://www.savannahstate.edu/faculty-staff/human-resources/docs/SHPolicy.pdf" target="_blank">Sexual Harassment Policy</a>
+            </div>
+            <div class="arrows">
+                <div class="left-arrow-container">
+                    <div class="left-arrow"></div>
+                </div>
+                <div class="right-arrow-container">
+                        <div class="right-arrow"></div>
+                </div>
+            </div>
+        </li>
+        <!-- slide 11 -->
+        <li class="slide11 hide">
+            <div class="slide-title">
+                <h2 class="standard-slide-header">Tuition Assistance Program Policy</h2>
+            </div>
+            <div class='standard-slide-container small16'>
+                <p>The Board of Regents of the University System of Georgia and Savannah State University are committed to the need for the continued professional growth and development of its personnel.  It considers support for educational expenses of personnel an important vehicle for addressing that need.  The Tuition Assistance Program Policy is designed to foster the professional growth and development of the University System's non-temporary full-time employees.</p>
+                <p>This program is offered subject to space being available in the course and funds being available within the institution.  A non-temporary full-time employee at a University System of Georgia institution who is eligible for benefits and who has been employed by a University System of Georgia institution for at least six months may, upon the approval of the employee's supervisor or other designated official, be eligible to participate.  When an employee is required to attend certain educational programs or when completion of certain educational programs is mandatory for retaining their current position, this policy does not apply.</p>
+                <p>Please <strong>PRINT</strong> and <strong>READ</strong> the following policy statement</p>
+                <a href="http://www.usg.edu/hr/benefits/tuition_assistance_program/tuition_assistance_program_policy" target="_blank">Tuition Assistance Program Policy</a>
+            </div>
+            <div class="arrows">
+                <div class="left-arrow-container">
+                    <div class="left-arrow"></div>
+                </div>
+                <div class="right-arrow-container">
+                        <div class="right-arrow"></div>
+                </div>
+            </div>
+        </li>
+        <!-- slide 12 -->
+        <li class="slide12 hide">
+            <div class="slide-title">
+                <h2 class="standard-slide-header">Ethics Policy</h2>
+            </div>
+            <div class='standard-slide-container'>
+                <p>Savannah State University is committed to create an environment wherein the highest ethical and professional standards of conduct are the expectation and the hallmark of our academic enterprise.  Accomplishing this purpose demands integrity, good judgment and dedication to service from all members of the Savannah State University's community.</p>
+                <p>Savannah State University values its employees and believes that each person is accountable for his/her actions.  It also recognizes a shared set of core values and ethical conduct to which each member of the SSU community must embrace.  Furthermore, SSU acknowledges that an organizational culture grounded in trust is essential to supporting these core values and ethical conduct</p>
+                <p>Please <strong>PRINT</strong> and <strong>READ</strong> the following policy statement</p>
+                <a href="http://www.savannahstate.edu/faculty-staff/human-resources/docs/ETHICS-POLICY.pdf" target="_blank">Ethics Policy</a>
+            </div>
+            <div class="arrows">
+                <div class="left-arrow-container">
+                    <div class="left-arrow"></div>
+                </div>
+                <div class="right-arrow-container">
+                        <div class="right-arrow"></div>
+                </div>
+            </div>
+        </li>
+        <!-- slide 13 -->
+        <li class="slide13 hide">
+            <div class="slide-title">
+                <h2 class="standard-slide-header">Policy Checklist</h2>
+            </div>
+            <div class='standard-slide-container'>
+                <p>Please make sure you have printed and read the following policies.  If you are missing one, you can use the links below to view them again:</p>
+                <ul class="slide-lists">
+                    <li><a href="http://www.savannahstate.edu/faculty-staff/human-resources/docs/drugpolicy.pdf" target="_blank">Drug-Free Schools and Communities Act Amendments of 1989</a></li>
+                    <li><a href="http://www.savannahstate.edu/faculty-staff/human-resources/docs/FMLA.pdf" target="_blank">Family Medical Leave Act (FMLA)</a></li>
+                    <li><a href="http://www.savannahstate.edu/faculty-staff/human-resources/docs/SHPolicy.pdf" target="_blank">SSU Policy on Sexual Harrassment</a></li>
+                    <li><a href="http://www.usg.edu/hr/benefits/tuition_assistance_program" target="_blank">Tuition Assistance Policy</a></li>
+                    <li><a href="http://www.savannahstate.edu/faculty-staff/human-resources/docs/ETHICS-POLICY.pdf" target="_blank">Ethics Policy</a></li>
+                </ul>
+                <p>Please print and complete the receipt that follows on the next screen. <strong>This form must be brought with your other paperwork to the Human Resources session.</strong></p>
+            </div>
+            <div class="arrows">
+                <div class="left-arrow-container">
+                    <div class="left-arrow"></div>
+                </div>
+                <div class="right-arrow-container">
+                        <div class="right-arrow"></div>
+                </div>
+            </div>
+        </li>
+        <!-- slide 14 -->
+        <li class="slide14 hide">
+            <div class="slide-title">
+                <h2 class="standard-slide-header">Policy Acknowledegment</h2>
+            </div>
+            <div class='standard-slide-container'>
+                <p><a href="http://www.savannahstate.edu/faculty-staff/human-resources/docs/Policy%20Acknowledgment.pdf" target="_blank">Click here to print and complete this form</a></p>
+                <p>This form must be brought with your other paperwork to the Human Resources session.</p>
+            </div>
+            <div class="arrows">
+                <div class="left-arrow-container">
+                    <div class="left-arrow"></div>
+                </div>
+                <div class="right-arrow-container">
+                        <div class="right-arrow"></div>
+                </div>
+            </div>
+        </li>
+        <!-- slide 15 -->
+        <li class="slide15 hide">
+            <div class="slide-title">
+                <h2 class="standard-slide-header">Forms</h2>
+            </div>
+            <div class='standard-slide-container'>
+                <p>You will receive 8 forms during this orientation session:</p>
+                <ul class='slide-lists'>
+                    <li><strong>Personal Data Form</strong></li>
+                    <li><strong>ITS Access Request Form</strong></li>
+                    <li><strong>I-9 Eligibility Verification Form</strong></li>
+                    <li><strong>Security Questionnaire and Loyalty Oath</strong></li>
+                    <li><strong>W-4 Form</strong></li>
+                    <li><strong>G-4 Form</strong></li>
+                    <li><strong>Direct Deposit Form</strong></li>
+                    <li><strong>Auto Decal Registration Form</strong></li>
+                </ul>
+                <p>These forms should be completed as soon as possible after you end this session.  Please submit the completed forms to Human Resources during your payroll/benefits sesssion.</p>
+                <p>To view and print each form, select the link with the form name on the following slides.</p>
+            </div>
+            <div class="arrows">
+                <div class="left-arrow-container">
+                    <div class="left-arrow"></div>
+                </div>
+                <div class="right-arrow-container">
+                        <div class="right-arrow"></div>
+                </div>
+            </div>
+        </li>
+        <!-- slide 16 -->
+        <li class="slide16 hide">
+            <div class="slide-title">
+                <h2 class="standard-slide-header">Personal Data Form</h2>
+            </div>
+            <div class='standard-slide-container'>
+                <p>This form is to provide information needed to enter an employee into our personnel/payroll system. The University System of Georgia uses some of the demographic data for statistical purposes. This form will be retained in the employee's personnel file.</p>
+                <a href="http://www.savannahstate.edu/faculty-staff/human-resources/docs/personaldata.pdf" target="_blank">Personal Data Form</a>
+            </div>
+            <div class="arrows">
+                <div class="left-arrow-container">
+                    <div class="left-arrow"></div>
+                </div>
+                <div class="right-arrow-container">
+                        <div class="right-arrow"></div>
+                </div>
+            </div>
+        </li>
+        <!-- slide 17 -->
+        <li class="slide17 hide">
+            <div class="slide-title">
+                <h2 class="standard-slide-header">ITS Access Request Form</h2>
+            </div>
+            <div class='standard-slide-container'>
+                <p>This form is to provide information needed to create an email and network account. You will be required to sign the document electronically. A verification email will be sent to you to verify your signature. Once account is created, ITS will contact you with account information.</p>
+                <a href="https://secure.echosign.com/public/esignWidget?wid=2AAABLblqZhBD2Ym2Ush8_DmijplXxhguHqDM2E23MYT5yCEq6Nb0nLqwxehFg1Z5OB8jOO0XleU" target="_blank">ITS Access Request Form</a>
+            </div>
+            <div class="arrows">
+                <div class="left-arrow-container">
+                    <div class="left-arrow"></div>
+                </div>
+                <div class="right-arrow-container">
+                        <div class="right-arrow"></div>
+                </div>
+            </div>
+        </li>
+        <!-- slide 18 -->
+        <li class="slide18 hide">
+            <div class="slide-title">
+                <h2 class="standard-slide-header">Employment Eligibility Verification</h2>
+            </div>
+            <div class='standard-slide-container'>
+                <p>The <strong>Immigration Reform and Control Act</strong> requires that all newly employed individuals provide documents which establish identity and employment eligibility and complete an I-9 form.</p>
+
+                <p>You should complete Section I of the I-9 form and turn it in, along with the rest of the required employment forms, to Human Resources. <strong>You will be required to provide proper identification</strong>, so please read the accompanying instructions when completing the form.</p>
+
+                <p>The University will employ only U.S. citizens and aliens authorized to work in the United States. Failure to comply with the provisions of the act will result in immediate termination of employment.</p>
+
+                <p><strong>Note: The I-9 form is a 3-page form.</strong> To avoid printing problems, please print the form one page at a time using the print button on the Adobe Acrobat toolbar.</p>
+                <p><a href="http://www.savannahstate.edu/faculty-staff/human-resources/docs/I-9form.pdf" target="_blank" download>ITS Access Request Form </a><span class="note">(This secure form must be downloaded and filled out using Adobe)</span></p>
+            </div>
+            <div class="arrows">
+                <div class="left-arrow-container">
+                    <div class="left-arrow"></div>
+                </div>
+                <div class="right-arrow-container">
+                        <div class="right-arrow"></div>
+                </div>
+            </div>
+        </li>
+        <!-- slide 19 -->
+        <li class="slide19 hide">
+            <div class="slide-title">
+                <h2 class="standard-slide-header">Security Questionnaire - Loyalty Oath</h2>
+            </div>
+            <div class='standard-slide-container small18'>
+                <h4>Security Questionnaire</h4>
+                <p>As a condition of employment, every employee of the University must complete and sign a security questionnaire.</p>
+                <p>This is a 2-page form. You must complete the appropriate areas on both pages.</p>
+                <p><strong>Note:</strong> This form must be notarized in two places. Do not sign until you are in the presence of a notary.</p>
+                <h4>Loyalty Oath</h4>
+                <p>The State of Georgia requires "all persons who are employed by and are on the payroll of ...the State of Georgia, or its departments and agencies" to take a loyalty oath.</p>
+                <p>If a person does not sign the oath, the act then instructs that "(the person) be taken from the payroll and not be permitted to receive any payment from the State."</p>
+                <a href="http://www.savannahstate.edu/faculty-staff/human-resources/docs/securityquest.pdf" target="_blank">Security Questionnaire and Loyalty Oath</a>
+            </div>
+            <div class="arrows">
+                <div class="left-arrow-container">
+                    <div class="left-arrow"></div>
+                </div>
+                <div class="right-arrow-container">
+                        <div class="right-arrow"></div>
+                </div>
+            </div>
+        </li>
+        <!-- slide 20 -->
+        <li class="slide20 hide">
+            <div class="slide-title">
+                <h2 class="standard-slide-header">Income Tax Withholding</h2>
+            </div>
+            <div class='standard-slide-container'>
+                <h4>W - 4 &amp; G - 4 Tax Forms</h4>
+                <p>All new employees should sign a W-4 Form (federal withholding) and a G-4 Form (state withholding) when they start work. The forms will be effective with the first wage payment. If you do not provide the University with completed federal and state tax withholding forms, taxes will be withheld at the maximum tax rate. Non-resident aliens may be subject to other requirements.</p>
+                <p><strong>Note:</strong> If you have been previously employed at SSU, and have completed tax forms on file with the Human Resources Office and wish to make no changes, you need not complete any additional tax forms. You may call Human Resources to see if your tax forms are still on file.</p>
+                <h4>Please Print Both Forms</h4>
+                <a href="https://www.irs.gov/pub/irs-pdf/fw4.pdf" target="_blank">W-4 Form</a><br>
+                <a href="http://www.savannahstate.edu/faculty-staff/human-resources/documents/G4_Rev072014.pdf" target="_blank">G-4 Form</a>
+            </div>
+            <div class="arrows">
+                <div class="left-arrow-container">
+                    <div class="left-arrow"></div>
+                </div>
+                <div class="right-arrow-container">
+                        <div class="right-arrow"></div>
+                </div>
+            </div>
+        </li>
+        <!-- slide 21 -->
+        <li class="slide21 hide">
+            <div class="slide-title">
+                <h2 class="standard-slide-header">Direct Deposit</h2>
+            </div>
+            <div class='standard-slide-container small16'>
+                <p>Direct deposit is a condition of employment for all University employees.  Your paycheck can be split between multiple accounts.</p>
+                <p>In order to prepare the direct deposit form, you will need to provide the following information:</p>
+                <ul class="slide-lists">
+                    <li>Exact name as it appears on your bank account</li>
+                    <li>Account number</li>
+                    <li>Name of bank</li>
+                    <li>Voided check for checking account to attach to the form</li>
+                    <li>Voided deposit slip for savings account</li>
+                </ul>
+                <p>The banking industry requires a pre-notification process that takes approximately three weeks to complete. As a result of this process, your direct deposit may not be effective until the second payday after your form is received in Payroll. Thus you may not receive a check until the direct deposit process has been completed.</p>
+                <a href="http://www.savannahstate.edu/faculty-staff/human-resources/docs/deposit.pdf" target="_blank">Direct Deposit Form</a><br>
+                <a href="http://www.savannahstate.edu/faculty-staff/human-resources/docs/USG_Direct_Deposit_Notification_Form.pdf" target="_blank">USG Direct Deposit Notification Form</a>
+            </div>
+            <div class="arrows">
+                <div class="left-arrow-container">
+                    <div class="left-arrow"></div>
+                </div>
+                <div class="right-arrow-container">
+                        <div class="right-arrow"></div>
+                </div>
+            </div>
+        </li>
+        <!-- slide 22 -->
+        <li class="slide22 hide">
+            <div class="slide-title">
+                <h2 class="standard-slide-header">Auto Decal Registration Form</h2>
+            </div>
+            <div class='standard-slide-container'>
+                <p>To purchase an automobile parking decal, please follow this link:</p>
+                <a href="http://www.savannahstate.edu/decal" target="_blank">http://www.savannahstate.edu/decal</a>
+            </div>
+            <div class="arrows">
+                <div class="left-arrow-container">
+                    <div class="left-arrow"></div>
+                </div>
+                <div class="right-arrow-container">
+                        <div class="right-arrow"></div>
+                </div>
+            </div>
+        </li>
+        <!-- slide 23 -->
+        <li class="slide23 hide">
+            <div class="slide-title">
+                <h2 class="standard-slide-header">Forms Checklist</h2>
+            </div>
+            <div class='standard-slide-container'>
+                <p>Please make sure you have all the following forms:</p>
+                <ul class="slide-lists">
+                    <li><a href="http://www.savannahstate.edu/faculty-staff/human-resources/docs/I-9form.pdf" target="_blank" download>ITS Access Request Form </a><span class="note">(This secure form must be downloaded and filled out using Adobe)</span></li>
+                    <li><a href="http://www.savannahstate.edu/faculty-staff/human-resources/docs/securityquest.pdf" target="_blank">Security Questionnaire and Loyalty Oath</a></li>
+                    <li><a href="https://www.irs.gov/pub/irs-pdf/fw4.pdf" target="_blank">W-4 Form</a></li>
+                    <li><a href="http://www.savannahstate.edu/faculty-staff/human-resources/documents/G4_Rev072014.pdf" target="_blank">G-4 Form</a></li>
+                    <li><a href="http://www.savannahstate.edu/faculty-staff/human-resources/docs/deposit.pdf" target="_blank">Direct Deposit Form</a></li>
+                    <li><a href="http://www.savannahstate.edu/decal" target="_blank">Auto Decal Registration Form</a></li>
+                </ul>
+                <p>If you are missing a form, you can view it by selecting a link above</p>
+                <p>Please complete forms as soon as possible after you end this session.  Submit the completed forms to Human Resources during your payroll/benefits session.</p>
+            </div>
+            <div class="arrows">
+                <div class="left-arrow-container">
+                    <div class="left-arrow"></div>
+                </div>
+                <div class="right-arrow-container">
+                        <div class="right-arrow"></div>
+                </div>
+            </div>
+        </li>
+        <!-- slide 24 -->
+        <li class="slide24 hide">
+            <div class="slide-title">
+                <h2 class="standard-slide-header">Congratulations!</h2>
+            </div>
+            <div class='standard-slide-container'>
+                <p><strong>You have completed the orientation.</strong> Please verify that you have all these required items:</p>
+                <div class="row small17">
+                    <div class='col-xs-6'>
+                        <ol>
+                            <li><strong>Certificate from Right to Know Training</strong></li>
+                            <li><strong>Policy Acknowledgment Form</strong></li>
+                            <li><strong>I-9 Form (along with originals of proper ID)</strong></li>
+                            <li><strong>Security Questionnaire and Loyalty Oath</strong></li>
+                        </ol>
+                    </div>
+                    <div class='col-xs-6'>
+                        <ol start="5">
+                            <li><strong>W-4 Form</strong></li>
+                            <li><strong>G-4 Form</strong></li>
+                            <li><strong>Direct Deposit Form</strong></li>
+                            <li><strong>Completion of the IT Security Awareness Course</strong></li>
+                        </ol>
+                    </div>
+                </div><br>
+                <p>Please submit all of these items to Human Resources for processing when you come to your orientation. <a href="mailto:hr@savannahstate.edu">Email us</a> your comments about this online orientation process. If you have any questions regarding your employment at SSU, speak with your supervisor, or Contact:</p>
+                <p>Human Resources<br>
+                    (912) 358-4194<br>
+                    <a href="http://www.savannahstate.edu/faculty-staff/human-resources/index.shtml" target="_blank">Human Resources Home Page</a></p>
+            </div>
+            <div class="arrows">
+                <div class="left-arrow-container">
+                    <div class="left-arrow"></div>
+                </div>
+                <div class="right-arrow-containerLast">  
+                </div>
+            </div>
+        </li>
+    </ul>
+    <div class="slide-page-tracker">
+        <h3>Slide: </h3>
+        <div class="numbers-container">
+            <div id='tracker1' class='tracker-numbers highlight'>1</div>
+        </div>
+    </div>
+</section>
+<!-- InstanceEndEditable -->
+<script>
+    $(document).ready(function(){
+        const slideShow = $('.slideshow-list');
+        var slideObj = slideShow.children();
+        var trackerObj = $('.numbers-container').children();
+        var currentSlide = 0;
+        //Slide tracker children creation script
+        for(var i = 2;i <= slideObj.length; i++){
+            $('.numbers-container').append("<div id='tracker" + i + "'" + " " + "class='tracker-numbers'>"+ i +"</div>");
+            trackerObj = $('.numbers-container').children();
+        }
+        //Forward script
+        $('.right-arrow').click(function(){
+                var nextSlide = currentSlide + 1;
+                //*Slides
+                $(slideObj[currentSlide]).removeClass('show');
+                $(slideObj[nextSlide]).addClass('show');
+                //*tracker
+                $(trackerObj[currentSlide]).removeClass('highlight');
+                $(trackerObj[nextSlide]).addClass('highlight');
+                currentSlide = nextSlide;
+        })
+        //Backward script
+        $('.left-arrow').click(function(){
+                var prevSlide = currentSlide - 1;
+                //*Slides
+                $(slideObj[currentSlide]).removeClass('show');
+                $(slideObj[prevSlide]).addClass('show');
+                //*tracker
+                $(trackerObj[currentSlide]).removeClass('highlight');
+                $(trackerObj[prevSlide]).addClass('highlight');
+                currentSlide = prevSlide;
+        })
+        //tracker highlight function
+        function tracker(x){
+            $(slideObj[currentSlide]).removeClass('show');
+            $(slideObj[x]).addClass('show');
+            $(trackerObj[currentSlide]).removeClass('highlight');
+            $(trackerObj[x]).addClass('highlight');
+            currentSlide = x;
+        }
+        //Clickable slide navigation
+        $('#tracker1').click(function(){
+            tracker(0);
+        });
+        $('#tracker2').click(function(){
+            tracker(1);
+        });
+        $('#tracker3').click(function(){
+            tracker(2);
+        });
+        $('#tracker4').click(function(){
+            tracker(3);
+        });
+        $('#tracker5').click(function(){
+            tracker(4);
+        });
+        $('#tracker6').click(function(){
+            tracker(5);
+        });
+        $('#tracker7').click(function(){
+            tracker(6);
+        });
+        $('#tracker8').click(function(){
+            tracker(7);
+        });
+        $('#tracker9').click(function(){
+            tracker(8);
+        });
+        $('#tracker10').click(function(){
+            tracker(9);
+        });
+        $('#tracker11').click(function(){
+            tracker(10);
+        });
+        $('#tracker12').click(function(){
+            tracker(11);
+        });
+        $('#tracker13').click(function(){
+            tracker(12);
+        });
+        $('#tracker14').click(function(){
+            tracker(13);
+        });
+        $('#tracker15').click(function(){
+            tracker(14);
+        });
+        $('#tracker16').click(function(){
+            tracker(15);
+        });
+        $('#tracker17').click(function(){
+            tracker(16);
+        });
+        $('#tracker18').click(function(){
+            tracker(17);
+        });
+        $('#tracker19').click(function(){
+            tracker(18);
+        });
+        $('#tracker20').click(function(){
+            tracker(19);
+        });
+        $('#tracker21').click(function(){
+            tracker(20);
+        });
+        $('#tracker22').click(function(){
+            tracker(21);
+        });
+        $('#tracker23').click(function(){
+            tracker(22);
+        });
+        $('#tracker24').click(function(){
+            tracker(23);
+        });
+    })
+</script>
+
